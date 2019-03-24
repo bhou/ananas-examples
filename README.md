@@ -10,7 +10,7 @@ This repository contains the examples for Ananas Analytics Desktop Edition. [htt
 
 3. Open & login to Ananas Analytics Desktop Edition
 
-4. Import the project
+4. Import the project from the unzipped folder (import 1 project at a time)
 
 ## Examples
 
