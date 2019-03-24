@@ -1,0 +1,22 @@
+# Ananas Analytics Examples
+
+This repository contains the examples for Ananas Analytics Desktop Edition.
+
+## How to use the examples
+
+1. Download this repository [Download](https://github.com/bhou/ananas-examples/archive/master.zip)
+
+2. Unzip the downloaded the zip file
+
+3. Open & login to Ananas Analytics Desktop Edition
+
+4. Import the project
+
+## Examples
+
+### Fifa Player 2019 Analysis
+
+A simple analysis of the Fifa player 2019
+
+
+
