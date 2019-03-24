@@ -1,0 +1,114 @@
+dag:
+  connections:
+    - source: 5c969069d47a400e547d25d9
+      target: 5c9696ad3cc63f7d6665abac
+    - source: 5c9696ad3cc63f7d6665abac
+      target: 5c9697213cc63f7d6665abb0
+  nodes:
+    - clientX: 371
+      clientY: 432
+      id: 5c969069d47a400e547d25d9
+      label: Fifa Player 2019
+      metadata:
+        description: Connect data from a CSV file
+        icon: images/csv.svg
+        name: CSV
+        options:
+          maxIncoming: 0
+          maxOutgoing: -1
+        step:
+          config:
+            format: csv
+            subtype: file
+          type: connector
+        type: Source
+      type: Source
+      x: 25
+      y: 25
+    - clientX: 695
+      clientY: 487
+      id: 5c9696ad3cc63f7d6665abac
+      label: Players By Nationality (Top 10 Nationalities)
+      metadata:
+        description: Transform your data with SQL
+        icon: images/sql.svg
+        name: SQL
+        options:
+          maxIncoming: 1
+          maxOutgoing: -1
+        step:
+          config:
+            subtype: sql
+          type: transformer
+        type: Transform
+      type: Transform
+      x: 250
+      y: 25
+    - clientX: 855
+      clientY: 501
+      id: 5c9697213cc63f7d6665abb0
+      label: Bar Chart
+      metadata:
+        description: Visualize your data as bar charts
+        icon: images/vertical-bar-chart.png
+        name: Bar Chart
+        options:
+          maxIncoming: 1
+          maxOutgoing: 0
+        step:
+          config:
+            subtype: bar chart
+          type: viewer
+        type: Visualization
+      type: Visualization
+      x: 450
+      y: 25
+id: default-example-project
+name: Example
+steps:
+  5c969069d47a400e547d25d9:
+    config:
+      format: csv
+      header: true
+      path: "{PROJECT_PATH}/fifa2019.csv"
+      subtype: file
+    description: |+
+      # Fifa Player 2019
+
+      The CSV file contains all fifa player data in 2019
+
+    id: 5c969069d47a400e547d25d9
+    name: Fifa Player 2019
+    type: connector
+  5c9696ad3cc63f7d6665abac:
+    config:
+      sql: |-
+        SELECT 
+        	count(1) as cnt,
+          Nationality
+        FROM PCOLLECTION
+        GROUP BY Nationality
+        ORDER BY cnt DESC
+        LIMIT 10
+      subtype: sql
+    description: The TOP 10 countries that have the most players in 2019
+    id: 5c9696ad3cc63f7d6665abac
+    name: Players By Nationality (Top 10 Nationalities)
+    type: transformer
+  5c9697213cc63f7d6665abb0:
+    config:
+      dimension:
+        - Nationality
+      measures:
+        - cnt
+      sql: |
+        SELECT * FROM PCOLLECTION
+      subtype: bar chart
+      title: Players By Nationality
+      xlabel: Nationality
+      ylabel: Players
+    description: Visualize your data as bar charts
+    id: 5c9697213cc63f7d6665abb0
+    name: Bar Chart
+    type: viewer
+variables: []
